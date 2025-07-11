@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException
 from app.database import get_collection
-# from app.models.category import Category
 from models.Category import Category
 from app.utils.objectid_helper import object_id
 

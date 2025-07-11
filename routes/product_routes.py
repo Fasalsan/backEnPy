@@ -19,16 +19,20 @@ def create_product(product: Product):
 def get_products():
     return [doc | {"_id": str(doc["_id"])} for doc in product_collection.find()]
 
-@router.get("/get/where/id={id}", response_model=Product)
+@router.get("/get/{id}", response_model=Product)
 def get_product(id: str):
     _id = object_id(id)
     if not _id:
         raise HTTPException(status_code=400, detail="Invalid ID")
+    
     product = product_collection.find_one({"_id": _id})
     if not product:
-        raise HTTPException(status_code=404, detail="Not found")
+        raise HTTPException(status_code=404, detail="Product not found")
+    
+    product["product_id"] = str(product["_id"])
     product.pop("_id", None)
     return product
+
 
 @router.put("/update/id={id}", response_model=Product)
 def update_product(id: str, product: Product):

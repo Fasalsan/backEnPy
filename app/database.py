@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://localhost:27017")
-db = client["testing_db"]
+client = MongoClient("mongodb+srv://monodbuser:hcKDUVZ07AdNITEb@cluster0.s4cq9r5.mongodb.net/matching-directory?retryWrites=true&w=majority")
+db = client["Flash_Light"]
 
 
 def get_collection(name: str):

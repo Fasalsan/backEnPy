@@ -1,9 +1,9 @@
-from pydantic import BaseModel, Field
+from typing import Optional
+from pydantic import BaseModel
+
 
 class Customer(BaseModel):
-    customer_id: str = Field(default=None, alias="_id")
+    customer_id: Optional[str] = None
     name: str
     phone: str
-
-    class Config:
-        allow_population_by_field_name = True
+    address: str
